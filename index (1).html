@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampaignOwl — The wise eye on your ad spend</title>
+<meta name="description" content="CampaignOwl watches your Google Ads and Microsoft Ads accounts 24/7 — catching wasted spend, broken tracking, and missed opportunities before they cost you money.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050505;--surface:#0d0d0d;--card:#111;--border:#1a1a1a;
+  --text:#a3a3a3;--bright:#f5f5f5;--dim:#666;
+  --amber:#f59e0b;--amber-dim:#92610a;--amber-glow:rgba(245,158,11,0.08);
+  --green:#22c55e;--red:#ef4444;--blue:#60a5fa;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* Noise overlay */
+body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9999}
+
+.container{max-width:960px;margin:0 auto;padding:0 24px}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(5,5,5,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav .container{display:flex;align-items:center;justify-content:space-between}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--bright)}
+.nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-link{color:var(--dim);font-size:13px;font-weight:500;transition:color 0.2s}
+.nav-link:hover{color:var(--bright);text-decoration:none}
+.nav-links{display:flex;gap:28px;align-items:center}
+
+/* HERO */
+.hero{padding:160px 0 100px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:60px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-block;padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;color:var(--dim);margin-bottom:32px;letter-spacing:0.5px}
+.hero-badge span{color:var(--amber)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:800;color:var(--bright);line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p{font-size:18px;color:var(--text);max-width:580px;margin:0 auto 40px;line-height:1.7}
+.hero-contact{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none}
+.hero-contact:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,0.25);text-decoration:none;color:#000}
+.hero-platforms{margin-top:48px;display:flex;justify-content:center;gap:32px;align-items:center;opacity:0.4}
+.hero-platforms span{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:80px 0}
+.section-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--amber);margin-bottom:16px}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,40px);font-weight:800;color:var(--bright);line-height:1.2;margin-bottom:16px;letter-spacing:-0.5px}
+.section-subtitle{font-size:16px;color:var(--text);max-width:560px;line-height:1.7;margin-bottom:48px}
+
+/* PROBLEM */
+.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.problem-card{padding:28px 24px;border-radius:12px;border:1px solid var(--border);background:var(--surface);position:relative;overflow:hidden}
+.problem-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);opacity:0.6}
+.problem-icon{font-size:28px;margin-bottom:16px;display:block}
+.problem-card h3{font-size:15px;font-weight:700;color:var(--bright);margin-bottom:8px}
+.problem-card p{font-size:13px;color:var(--text);line-height:1.7}
+
+/* SOLUTION */
+.solution-section{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.solution-content{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.solution-text p{font-size:15px;line-height:1.8;margin-bottom:16px}
+.solution-text .highlight{color:var(--amber);font-weight:600}
+.solution-visual{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;position:relative}
+.solution-visual-header{display:flex;align-items:center;gap:8px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.solution-visual-dot{width:8px;height:8px;border-radius:50%}
+.solution-visual-title{font-size:11px;color:var(--dim);margin-left:8px}
+.score-row{display:flex;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border)}
+.score-row:last-child{border-bottom:none}
+.score-num{font-size:24px;font-weight:800;color:var(--bright);width:48px;text-align:center}
+.score-num.good{color:var(--green)}
+.score-num.warn{color:var(--amber)}
+.score-num.bad{color:var(--red)}
+.score-label{font-size:12px;color:var(--text)}
+.score-bar{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
+.score-bar-fill{height:100%;border-radius:2px}
+
+/* FEATURES */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+
+/* COMPARISON */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.compare-card{padding:28px 24px;border-radius:12px;border:1px solid var(--border);position:relative;overflow:hidden}
+.compare-card.them{background:rgba(239,68,68,0.03);border-color:rgba(239,68,68,0.15)}
+.compare-card.them::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--red);opacity:0.5}
+.compare-card.us{background:var(--amber-glow);border-color:rgba(245,158,11,0.2)}
+.compare-card.us::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber)}
+.compare-card .card-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.compare-card .card-header span{font-size:24px}
+.compare-card .card-header h3{font-size:16px;font-weight:700;color:var(--bright)}
+.compare-card .card-header .tag{font-size:10px;padding:3px 8px;border-radius:4px;font-weight:600}
+.compare-card.them .tag{background:rgba(239,68,68,0.1);color:var(--red)}
+.compare-card.us .tag{background:rgba(245,158,11,0.1);color:var(--amber)}
+.compare-item{display:flex;gap:10px;align-items:flex-start;margin-bottom:14px;font-size:13px;color:var(--text);line-height:1.6}
+.compare-item .icon{flex-shrink:0;margin-top:2px}
+.feature-card{padding:28px 24px;border-radius:12px;border:1px solid var(--border);background:var(--surface);transition:border-color 0.3s,background 0.3s}
+.feature-card:hover{border-color:var(--amber-dim);background:var(--amber-glow)}
+.feature-icon{width:40px;height:40px;border-radius:10px;background:var(--amber-glow);border:1px solid rgba(245,158,11,0.15);display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:16px}
+.feature-card h3{font-size:14px;font-weight:700;color:var(--bright);margin-bottom:8px}
+.feature-card p{font-size:13px;color:var(--text);line-height:1.7}
+
+/* AUDIENCE */
+.audience-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.audience-card{padding:32px 28px;border-radius:12px;border:1px solid var(--border);background:var(--surface)}
+.audience-card .emoji{font-size:36px;margin-bottom:16px;display:block}
+.audience-card h3{font-size:18px;font-weight:700;color:var(--bright);margin-bottom:12px}
+.audience-card p{font-size:14px;color:var(--text);line-height:1.7}
+.audience-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.audience-tag{padding:4px 12px;border-radius:6px;background:var(--card);border:1px solid var(--border);font-size:11px;color:var(--dim)}
+
+/* CTA */
+.cta-section{text-align:center;padding:100px 0;position:relative}
+.cta-section::before{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:500px;height:400px;background:radial-gradient(circle,rgba(245,158,11,0.04) 0%,transparent 70%);pointer-events:none}
+.cta-owl{font-size:48px;margin-bottom:20px;display:block}
+.cta-email{display:inline-block;padding:12px 28px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--bright);font-size:15px;font-weight:600;margin-top:24px;transition:border-color 0.3s}
+.cta-email:hover{border-color:var(--amber);text-decoration:none}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:32px 0;text-align:center}
+footer p{font-size:12px;color:var(--dim)}
+footer a{color:var(--dim)}
+footer a:hover{color:var(--amber)}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-top:8px}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .problem-grid,.features-grid{grid-template-columns:1fr}
+  .audience-grid,.compare-grid{grid-template-columns:1fr}
+  .solution-content{grid-template-columns:1fr}
+  .hero{padding:120px 0 60px}
+  .nav-links .nav-link:not(:last-child){display:none}
+  .hero-platforms{flex-wrap:wrap;gap:16px}
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge,.hero h1,.hero p,.hero-contact,.hero-platforms{animation:fadeUp 0.6s ease both}
+.hero h1{animation-delay:0.1s}
+.hero p{animation-delay:0.2s}
+.hero-contact{animation-delay:0.3s}
+.hero-platforms{animation-delay:0.4s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container">
+    <div class="nav-logo">
+      <div class="nav-logo-icon">🦉</div>
+      CampaignOwl
+    </div>
+    <div class="nav-links">
+      <a href="#features" class="nav-link">Features</a>
+      <a href="#who" class="nav-link">Who it's for</a>
+      <a href="/cdn-cgi/l/email-protection#f69e939a9a99b695979b86979f919899819ad895999b" class="nav-link">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">Coming soon — <span>currently in development</span></div>
+    <h1>Stop wasting ad spend.<br>Start <em>seeing everything.</em></h1>
+    <p>CampaignOwl watches your Google Ads and Microsoft Ads accounts 24/7 — catching wasted spend, broken tracking, and missed opportunities before they cost you money.</p>
+    <a href="/cdn-cgi/l/email-protection#630b060f0f0c2300020e13020a040d0c140f4d000c0e" class="hero-contact">Get in touch →</a>
+    <div class="hero-platforms">
+      <span>Google Ads</span>
+      <span>•</span>
+      <span>Microsoft Ads</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM -->
+<section>
+  <div class="container">
+    <div class="section-label">The problem</div>
+    <div class="section-title">Your ad accounts are leaking money right now</div>
+    <div class="section-subtitle">Most accounts have issues hiding in plain sight. Here's what we find again and again.</div>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="problem-icon">🔴</span>
+        <h3>Wasted Spend</h3>
+        <p>The average Google Ads account wastes 20–30% of its budget on irrelevant search terms, poor-performing keywords, and broken landing pages.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-icon">⏰</span>
+        <h3>No Time to Check</h3>
+        <p>Agencies managing multiple accounts can't manually audit every campaign every week. Problems go unnoticed for months, quietly draining budget.</p>
+      </div>
+      <div class="problem-card">
+        <span class="problem-icon">📊</span>
+        <h3>Misleading Data</h3>
+        <p>Duplicate conversions, missing tracking, inflated ROAS — you're making decisions on bad data and don't even know it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution-section">
+  <div class="container">
+    <div class="solution-content">
+      <div class="solution-text">
+        <div class="section-label">The solution</div>
+        <div class="section-title">Your always-on PPC watchdog</div>
+        <p>CampaignOwl continuously audits your ad accounts, surfaces exactly what's wrong, tells you how to fix it, and — when you're ready — <span class="highlight">fixes it for you.</span></p>
+        <p>Built by a PPC specialist with <span class="highlight">18 years of hands-on experience</span> managing millions in ad spend. Every check, every recommendation, every automation is grounded in real-world expertise — not generic AI guesswork.</p>
+      </div>
+      <div class="solution-visual">
+        <div class="solution-visual-header">
+          <div class="solution-visual-dot" style="background:#ef4444"></div>
+          <div class="solution-visual-dot" style="background:#f59e0b"></div>
+          <div class="solution-visual-dot" style="background:#22c55e"></div>
+          <div class="solution-visual-title">Account Health</div>
+        </div>
+        <div class="score-row">
+          <div class="score-num bad">4</div>
+          <div>
+            <div class="score-label">Urgent issues</div>
+          </div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:85%;background:var(--red)"></div></div>
+        </div>
+        <div class="score-row">
+          <div class="score-num warn">7</div>
+          <div>
+            <div class="score-label">Optimisations</div>
+          </div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:60%;background:var(--amber)"></div></div>
+        </div>
+        <div class="score-row">
+          <div class="score-num good">5</div>
+          <div>
+            <div class="score-label">Growth opportunities</div>
+          </div>
+          <div class="score-bar"><div class="score-bar-fill" style="width:40%;background:var(--green)"></div></div>
+        </div>
+        <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center">
+          <div style="font-size:11px;color:var(--dim)">Health Score</div>
+          <div style="font-size:28px;font-weight:800;color:var(--amber)">62<span style="font-size:14px;color:var(--dim)">/100</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY NOT GOOGLE -->
+<section>
+  <div class="container">
+    <div class="section-label">Why not just use Google's AI?</div>
+    <div class="section-title">Google optimises for Google. We optimise for you.</div>
+    <div class="section-subtitle">Google Ads has built-in recommendations and AI. So why would you need CampaignOwl? Because Google's goals and your goals aren't the same.</div>
+    <div class="compare-grid">
+      <div class="compare-card them">
+        <div class="card-header">
+          <span>🔵</span>
+          <div>
+            <h3>Google's Recommendations</h3>
+            <span class="tag">Optimises for Google's revenue</span>
+          </div>
+        </div>
+        <div class="compare-item"><span class="icon">❌</span><span>Recommends increasing budgets and broadening match types — because more spend benefits Google</span></div>
+        <div class="compare-item"><span class="icon">❌</span><span>Can't tell you your conversion tracking is broken or double-counting — it built the system</span></div>
+        <div class="compare-item"><span class="icon">❌</span><span>Doesn't check your landing pages for speed, mobile issues, or conversion drop-offs</span></div>
+        <div class="compare-item"><span class="icon">❌</span><span>Has no visibility into Microsoft Ads, so can't spot cross-platform waste</span></div>
+        <div class="compare-item"><span class="icon">❌</span><span>Auto-apply suggestions can make changes you never approved</span></div>
+        <div class="compare-item"><span class="icon">❌</span><span>Experienced PPC managers reject 60%+ of Google's recommendations for good reason</span></div>
+      </div>
+      <div class="compare-card us">
+        <div class="card-header">
+          <span>🦉</span>
+          <div>
+            <h3>CampaignOwl</h3>
+            <span class="tag">Optimises for your profit</span>
+          </div>
+        </div>
+        <div class="compare-item"><span class="icon">✅</span><span>Finds where to cut wasted spend — because saving you money is the whole point</span></div>
+        <div class="compare-item"><span class="icon">✅</span><span>Audits your tracking setup and flags duplicate conversions, missing tags, and inflated ROAS</span></div>
+        <div class="compare-item"><span class="icon">✅</span><span>Analyses landing pages for speed, conversion funnels, mobile performance, and message match</span></div>
+        <div class="compare-item"><span class="icon">✅</span><span>Works across Google and Microsoft Ads — one view of your entire paid spend</span></div>
+        <div class="compare-item"><span class="icon">✅</span><span>Nothing changes without your approval — you stay in control at every step</span></div>
+        <div class="compare-item"><span class="icon">✅</span><span>Built on 18 years of knowing which recommendations to follow and which to ignore</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="container">
+    <div class="section-label">Features</div>
+    <div class="section-title">What CampaignOwl checks for you</div>
+    <div class="section-subtitle">Automated, continuous, prioritised by impact.</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💯</div>
+        <h3>Health Score</h3>
+        <p>One number that shows how your account is really performing. Track it weekly and spot problems before they get expensive.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔍</div>
+        <h3>Smart Audit</h3>
+        <p>Automated checks across tracking, budget, keywords, ads, and landing pages. Prioritised by impact — fix what matters first.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🧠</div>
+        <h3>Search Term Intelligence</h3>
+        <p>Spots wasted spend on irrelevant queries. Classifies search terms by intent and lets you add negatives in bulk.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Budget Protection</h3>
+        <p>Real-time pacing alerts prevent overspend. Autopilot can reduce budgets automatically when campaigns spike.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <h3>Landing Page Analysis</h3>
+        <p>Speed scores, conversion funnels, and mobile vs desktop breakdowns for every page your ads point to.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Change Log</h3>
+        <p>Every change tracked, timestamped, and reversible. Full accountability for your team or your clients.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUDIENCE -->
+<section id="who" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label">Who it's for</div>
+    <div class="section-title">Built for agencies and advertisers</div>
+    <div class="section-subtitle">Whether you manage ads for clients or for your own business, CampaignOwl has your back.</div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <span class="emoji">🏢</span>
+        <h3>Agencies & Freelancers</h3>
+        <p>Manage multiple client accounts from one dashboard. Health scores, client-ready reporting, and a Build Advisor for structuring new client campaigns from scratch.</p>
+        <div class="audience-tags">
+          <span class="audience-tag">Multi-client dashboard</span>
+          <span class="audience-tag">Client view</span>
+          <span class="audience-tag">Team roles</span>
+          <span class="audience-tag">Build advisor</span>
+        </div>
+      </div>
+      <div class="audience-card">
+        <span class="emoji">🏪</span>
+        <h3>Direct Advertisers</h3>
+        <p>You run ads for your own business and don't want to waste money. CampaignOwl tells you what's wrong in plain English and helps you fix it with one click.</p>
+        <div class="audience-tags">
+          <span class="audience-tag">Plain English</span>
+          <span class="audience-tag">One-click fixes</span>
+          <span class="audience-tag">Budget protection</span>
+          <span class="audience-tag">No PPC expertise needed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <span class="cta-owl">🦉</span>
+    <div class="section-title">Coming soon</div>
+    <p style="font-size:16px;color:var(--text);max-width:480px;margin:16px auto 0">CampaignOwl is currently in development. If you'd like to learn more or be among the first to try it, get in touch.</p>
+    <a href="/cdn-cgi/l/email-protection#a1c9c4cdcdcee1c2c0ccd1c0c8c6cfced6cd8fc2cecc" class="cta-email"><span class="__cf_email__" data-cfemail="cca4a9a0a0a38cafada1bcada5aba2a3bba0e2afa3a1">[email&#160;protected]</span></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>©
