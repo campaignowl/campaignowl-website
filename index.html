@@ -178,11 +178,18 @@ footer a:hover{color:var(--amber)}
 @media(max-width:768px){
   .problem-grid,.features-grid{grid-template-columns:1fr}
   .audience-grid,.compare-grid{grid-template-columns:1fr}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
   .solution-content{grid-template-columns:1fr}
   .hero{padding:120px 0 60px}
   .nav-links .nav-link:not(:last-child){display:none}
   .hero-platforms{flex-wrap:wrap;gap:16px}
 }
+@media(max-width:480px){
+  .pricing-grid{grid-template-columns:1fr}
+}
+
+/* PRICING GRID */
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
 
 /* CONTACT FORM */
 .contact-section{padding:80px 0}
@@ -418,7 +425,7 @@ footer a:hover{color:var(--amber)}
       <div class="section-title">Simple, transparent pricing</div>
       <div class="section-subtitle" style="margin-left:auto;margin-right:auto">14-day free trial on all plans. Cancel anytime.</div>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px">
+    <div class="pricing-grid">
       <!-- Starter -->
       <div style="border:1px solid var(--border);border-radius:12px;padding:28px 20px;background:var(--card)">
         <div style="font-size:14px;font-weight:700;color:var(--bright)">Starter</div>
