@@ -184,6 +184,25 @@ footer a:hover{color:var(--amber)}
   .hero-platforms{flex-wrap:wrap;gap:16px}
 }
 
+/* CONTACT FORM */
+.contact-section{padding:80px 0}
+.contact-form{max-width:520px;margin:0 auto;padding:32px;border:1px solid var(--border);border-radius:16px;background:var(--surface)}
+.contact-form label{display:block;font-size:12px;font-weight:600;color:var(--dim);margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+.contact-form input,.contact-form textarea{width:100%;padding:12px 16px;border:1px solid var(--border);border-radius:8px;background:var(--card);color:var(--bright);font-size:14px;font-family:'DM Sans',sans-serif;transition:border-color 0.2s;outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--amber)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--dim)}
+.contact-form textarea{resize:vertical;min-height:120px}
+.contact-field{margin-bottom:20px}
+.contact-submit{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-size:14px;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;font-family:'DM Sans',sans-serif}
+.contact-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(245,158,11,0.3)}
+.contact-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;box-shadow:none}
+.contact-success{text-align:center;padding:40px 20px}
+.contact-success .icon{font-size:48px;margin-bottom:16px;display:block}
+.contact-success h3{font-size:18px;font-weight:700;color:var(--bright);margin-bottom:8px}
+.contact-success p{font-size:14px;color:var(--text)}
+.contact-error{font-size:13px;color:var(--red);margin-bottom:16px}
+.grecaptcha-badge{visibility:hidden !important}
+
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .hero-badge,.hero h1,.hero p,.hero-contact,.hero-platforms{animation:fadeUp 0.6s ease both}
@@ -206,7 +225,7 @@ footer a:hover{color:var(--amber)}
       <a href="#features" class="nav-link">Features</a>
       <a href="#pricing" class="nav-link">Pricing</a>
       <a href="#who" class="nav-link">Who it's for</a>
-      <a href="mailto:hello@campaignowl.com" class="nav-link">Contact</a>
+      <a href="#contact" class="nav-link">Contact</a>
       <a href="https://app.campaignowl.com" class="nav-link" style="color:var(--amber);font-weight:600">Sign in →</a>
     </div>
   </div>
@@ -468,16 +487,101 @@ footer a:hover{color:var(--amber)}
     <div class="section-title">Try Campaign Owl free</div>
     <p style="font-size:16px;color:var(--text);max-width:480px;margin:16px auto 0">Connect your Google Ads account and get your first health score in under 60 seconds. 35+ AI-powered checks. 14-day free trial.</p>
     <a href="https://app.campaignowl.com" class="hero-contact" style="margin-top:24px;display:inline-flex">Get started free →</a>
-    <div style="margin-top:16px"><a href="mailto:hello@campaignowl.com" class="cta-email">Or email us: hello@campaignowl.com</a></div>
   </div>
 </section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section" style="border-top:1px solid var(--border)">
+  <div class="container" style="text-align:center">
+    <div class="section-label">Get in touch</div>
+    <div class="section-title">Questions? We'd love to hear from you</div>
+    <div class="section-subtitle" style="margin-left:auto;margin-right:auto">Whether you want a demo, need help with your audit, or just want to chat PPC — drop us a message.</div>
+
+    <div class="contact-form" id="contact-form">
+      <div class="contact-field">
+        <label for="cf-name">Your name</label>
+        <input type="text" id="cf-name" placeholder="Jane Smith">
+      </div>
+      <div class="contact-field">
+        <label for="cf-email">Email address *</label>
+        <input type="email" id="cf-email" placeholder="you@example.com" required>
+      </div>
+      <div class="contact-field">
+        <label for="cf-message">Message *</label>
+        <textarea id="cf-message" placeholder="Tell us what you need help with..." required></textarea>
+      </div>
+      <div id="cf-error" class="contact-error" style="display:none"></div>
+      <button type="button" class="contact-submit" id="cf-submit" onclick="submitContactForm()">Send Message</button>
+    </div>
+    <div id="cf-success" class="contact-success" style="display:none">
+      <span class="icon">✅</span>
+      <h3>Message sent!</h3>
+      <p>Thanks for getting in touch. We'll get back to you as soon as we can.</p>
+    </div>
+
+    <p style="font-size:11px;color:var(--dim);margin-top:16px;max-width:400px;margin-left:auto;margin-right:auto">
+      Protected by reCAPTCHA. Google
+      <a href="https://policies.google.com/privacy" style="color:var(--dim);text-decoration:underline">Privacy Policy</a> and
+      <a href="https://policies.google.com/terms" style="color:var(--dim);text-decoration:underline">Terms of Service</a> apply.
+    </p>
+  </div>
+</section>
+
+<script src="https://www.google.com/recaptcha/api.js?render=6Ler86ksAAAAALPhm0GaH8BnFDjQuocFtTtN1Sfj" async></script>
+<script>
+async function submitContactForm() {
+  var btn = document.getElementById('cf-submit');
+  var errEl = document.getElementById('cf-error');
+  var name = document.getElementById('cf-name').value;
+  var email = document.getElementById('cf-email').value;
+  var message = document.getElementById('cf-message').value;
+
+  errEl.style.display = 'none';
+
+  if (!email || !email.includes('@')) { errEl.textContent = 'Please enter a valid email address.'; errEl.style.display = 'block'; return; }
+  if (!message.trim()) { errEl.textContent = 'Please enter a message.'; errEl.style.display = 'block'; return; }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  try {
+    var recaptchaToken;
+    if (typeof grecaptcha !== 'undefined') {
+      recaptchaToken = await grecaptcha.execute('6Ler86ksAAAAALPhm0GaH8BnFDjQuocFtTtN1Sfj', { action: 'contact' });
+    }
+
+    var res = await fetch('https://app.campaignowl.com/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, email: email, message: message, recaptchaToken: recaptchaToken, source: 'website' })
+    });
+
+    if (!res.ok) {
+      var data = await res.json();
+      throw new Error(data.error || 'Something went wrong');
+    }
+
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('cf-success').style.display = 'block';
+  } catch (err) {
+    errEl.textContent = err.message || 'Failed to send. Please try again.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+  }
+}
+</script>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
     <div class="footer-links">
       <a href="privacy.html">Privacy Policy</a>
-      <a href="mailto:hello@campaignowl.com">Contact</a>
+      <a href="#contact">Contact</a>
       <a href="https://app.campaignowl.com">Sign in</a>
     </div>
-    <p style="margin-top:12px">©
+    <p style="margin-top:12px">© 2026 Campaign Owl. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>
