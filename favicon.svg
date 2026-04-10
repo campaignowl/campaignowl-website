@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#FEF3C7"/>
+
+  <!-- Owl body -->
+  <ellipse cx="256" cy="310" rx="120" ry="130" fill="#D97706"/>
+
+  <!-- Owl head -->
+  <circle cx="256" cy="200" r="100" fill="#F59E0B"/>
+
+  <!-- Ear tufts -->
+  <path d="M180 130 L200 100 L220 140 Z" fill="#D97706"/>
+  <path d="M292 140 L312 100 L332 130 Z" fill="#D97706"/>
+
+  <!-- Eye circles (white) -->
+  <circle cx="210" cy="195" r="35" fill="white"/>
+  <circle cx="302" cy="195" r="35" fill="white"/>
+
+  <!-- Eye circles (amber ring) -->
+  <circle cx="210" cy="195" r="35" fill="none" stroke="#B45309" stroke-width="3"/>
+  <circle cx="302" cy="195" r="35" fill="none" stroke="#B45309" stroke-width="3"/>
+
+  <!-- Pupils -->
+  <circle cx="210" cy="192" r="15" fill="#1C1917"/>
+  <circle cx="302" cy="192" r="15" fill="#1C1917"/>
+
+  <!-- Pupil highlights -->
+  <circle cx="215" cy="186" r="5" fill="white"/>
+  <circle cx="307" cy="186" r="5" fill="white"/>
+
+  <!-- Beak -->
+  <path d="M244 225 L256 250 L268 225 Z" fill="#92400E"/>
+
+  <!-- Belly pattern -->
+  <ellipse cx="256" cy="340" rx="65" ry="75" fill="#FDE68A"/>
+
+  <!-- Belly lines -->
+  <path d="M220 310 Q256 320 292 310" stroke="#D97706" stroke-width="2.5" fill="none"/>
+  <path d="M215 330 Q256 340 297 330" stroke="#D97706" stroke-width="2.5" fill="none"/>
+  <path d="M218 350 Q256 360 294 350" stroke="#D97706" stroke-width="2.5" fill="none"/>
+  <path d="M224 370 Q256 380 288 370" stroke="#D97706" stroke-width="2.5" fill="none"/>
+
+  <!-- Wings -->
+  <path d="M136 280 Q120 340 150 400 Q170 370 180 320 Z" fill="#B45309"/>
+  <path d="M376 280 Q392 340 362 400 Q342 370 332 320 Z" fill="#B45309"/>
+
+  <!-- Feet -->
+  <path d="M220 430 L200 455 M220 430 L220 458 M220 430 L240 455" stroke="#92400E" stroke-width="6" stroke-linecap="round"/>
+  <path d="M292 430 L272 455 M292 430 L292 458 M292 430 L312 455" stroke="#92400E" stroke-width="6" stroke-linecap="round"/>
+</svg>
