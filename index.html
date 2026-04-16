@@ -176,22 +176,24 @@ footer a{color:var(--dim)}
 footer a:hover{color:var(--amber)}
 .footer-links{display:flex;justify-content:center;gap:24px;margin-top:8px}
 
+/* PRICING GRID — declared BEFORE responsive rules so the media queries override it */
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
+
 /* RESPONSIVE */
+@media(max-width:1023px){
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+}
 @media(max-width:768px){
   .problem-grid,.features-grid{grid-template-columns:1fr}
   .audience-grid,.compare-grid{grid-template-columns:1fr}
-  .pricing-grid{grid-template-columns:repeat(2,1fr)}
   .solution-content{grid-template-columns:1fr}
   .hero{padding:120px 0 60px}
   .nav-links .nav-link:not(:last-child){display:none}
   .hero-platforms{flex-wrap:wrap;gap:16px}
 }
-@media(max-width:480px){
+@media(max-width:600px){
   .pricing-grid{grid-template-columns:1fr}
 }
-
-/* PRICING GRID */
-.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:32px}
 
 /* CONTACT FORM */
 .contact-section{padding:80px 0}
