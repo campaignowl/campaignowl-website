@@ -1,14 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://campaignowl.co.uk/</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en-gb" href="https://campaignowl.co.uk/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://campaignowl.co.uk/" />
+  </url>
+  <url>
+    <loc>https://campaignowl.co.uk/terms.html</loc>
+    <lastmod>2026-05-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.4</priority>
   </url>
   <url>
     <loc>https://campaignowl.co.uk/privacy.html</loc>
-    <lastmod>2026-04-06</lastmod>
+    <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.3</priority>
   </url>
