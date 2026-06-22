@@ -803,12 +803,32 @@ async function submitContactForm() {
 
 <script src="cookie-consent.js"></script>
 <script>
-  // Cookie consent banner. Tags array is empty for now — the marketing
-  // site currently runs only reCAPTCHA (security cookie, PECR-exempt,
-  // not gated by consent). When we add GA4 / LinkedIn Insight Tag /
-  // any other optional tag, register them in the tags array below and
-  // they'll automatically be loaded only after the user accepts.
-  cookieConsent.init({ tags: [] });
+  // Cookie consent banner. reCAPTCHA stays exempt (security cookie, PECR-
+  // exempt). The Google tag below loads ONLY after the user accepts (opt-in).
+  // It's the SAME GA4 property as the app (G-LWRQTR3Q8H) with a cross-domain
+  // linker, so the Google click ID (gclid) carries from this marketing site
+  // to the app (app.campaignowl.com) where signup completes. Without this, an
+  // ad click that lands here and converts in the app does NOT attribute back
+  // to the campaign — the two are separate domains and cookies don't share.
+  cookieConsent.init({
+    tags: [
+      {
+        name: 'Google tag (GA4)',
+        load: function () {
+          var s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LWRQTR3Q8H';
+          document.head.appendChild(s);
+          window.dataLayer = window.dataLayer || [];
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          window.gtag('js', new Date());
+          window.gtag('config', 'G-LWRQTR3Q8H', {
+            linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] }
+          });
+        }
+      }
+    ]
+  });
 </script>
 </body>
 </html>
