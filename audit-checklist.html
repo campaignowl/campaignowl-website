@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 60-Point Google Ads Audit Checklist — CampaignOwl</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050505;--surface:#0d0d0d;--border:#1a1a1a;--text:#a3a3a3;--bright:#f5f5f5;--amber:#f59e0b}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--amber);text-decoration:none}
+a:hover{text-decoration:underline}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+nav{padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
+nav .container{display:flex;align-items:center;gap:10px}
+.nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav-logo-text{font-weight:700;font-size:15px;color:var(--bright)}
+.nav-print{margin-left:auto;font-size:13px;border:1px solid var(--border);border-radius:8px;padding:6px 12px;color:var(--text);background:none;cursor:pointer;font-family:inherit}
+.nav-print:hover{color:var(--bright);border-color:#333}
+h1{font-size:30px;font-weight:700;color:var(--bright);line-height:1.25;margin-bottom:12px;letter-spacing:-0.01em}
+.intro{font-style:italic;font-size:14px;color:#8a8a8a;border-left:3px solid var(--amber);padding-left:16px;margin:20px 0 40px}
+h2{font-size:20px;font-weight:700;color:var(--bright);margin:44px 0 6px}
+h2 .count{font-size:13px;font-weight:500;color:#666}
+h3{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);margin:28px 0 10px}
+ol{list-style:none;counter-reset:none;margin:0}
+li.pt{display:flex;gap:12px;padding:9px 0;border-bottom:1px solid #111;font-size:14px}
+li.pt .n{flex-shrink:0;width:26px;height:26px;border:1.5px solid #2a2a2a;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#777;margin-top:2px}
+li.pt strong{color:var(--bright);font-weight:600}
+.cta{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:28px 32px;margin:56px 0 24px;text-align:center}
+.cta p{font-size:14px;margin-bottom:18px}
+.cta a.btn{display:inline-block;background:linear-gradient(135deg,#f59e0b,#d97706);border-radius:10px;padding:13px 26px;font-size:14px;font-weight:700;color:#050505}
+.cta a.btn:hover{text-decoration:none;filter:brightness(1.08)}
+footer{border-top:1px solid var(--border);padding:24px 0 64px;text-align:center;margin-top:40px}
+footer p{font-size:12px;color:#444}
+@media print{
+  :root{--bg:#fff;--surface:#fff;--border:#ddd;--text:#333;--bright:#000;--amber:#b45309}
+  body{background:#fff;color:#333}
+  nav .nav-print,.cta,footer{display:none}
+  li.pt{break-inside:avoid;border-bottom:1px solid #eee}
+  li.pt .n{border-color:#bbb;color:#555}
+  h2{break-after:avoid}
+  a{color:#333;text-decoration:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="nav-logo-icon">🦉</div>
+    <a href="index.html" class="nav-logo-text" style="color:var(--bright)">CampaignOwl</a>
+    <button class="nav-print" onclick="window.print()">Print / save as PDF</button>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>The 60-Point Google Ads Audit Checklist</h1>
+  <p class="intro">Work in three passes, not one sitting: money leaks first (tracking), then money flow (search terms, budgets, bidding), then the compounders (ads, Quality Score, landing pages). Twenty minutes a pass per account.</p>
+
+  <h2>Pass 1 — Tracking &amp; conversions <span class="count">(the money leaks) · 18 points</span></h2>
+
+  <h3>Setup fundamentals</h3>
+  <ol>
+    <li class="pt"><span class="n">1</span><span><strong>Auto-tagging is ON</strong> — Admin → Account settings. Off means no GCLID: conversions report as direct/organic and Smart Bidding flies blind.</span></li>
+    <li class="pt"><span class="n">2</span><span><strong>Conversion actions exist at all</strong> — Goals → Conversions. No actions = every other number in the account is decoration.</span></li>
+    <li class="pt"><span class="n">3</span><span><strong>The right actions are marked Primary</strong> — Primary actions are what Smart Bidding optimises to. Check the highest-intent actions (Purchase, Lead) are Primary, not buried as Secondary.</span></li>
+    <li class="pt"><span class="n">4</span><span><strong>A biddable goal is set</strong> — Goals table: at least one goal category biddable, or campaigns have no account-default target.</span></li>
+    <li class="pt"><span class="n">5</span><span><strong>Campaign-level goal overrides are intentional</strong> — any campaign using a custom conversion subset instead of account defaults: was that deliberate, or legacy config nobody remembers?</span></li>
+  </ol>
+
+  <h3>Double-counting traps</h3>
+  <ol>
+    <li class="pt"><span class="n">6</span><span><strong>No duplicate Primary actions in the same category</strong> — two Primary "Purchase" actions = every sale counted twice = ROAS fiction.</span></li>
+    <li class="pt"><span class="n">7</span><span><strong>No similar-named near-duplicates</strong> — "Form Submit (GTM)" + "Form Submission (GA4)" both Primary usually track the same event twice.</span></li>
+    <li class="pt"><span class="n">8</span><span><strong>Lead subcategories don't overlap</strong> — Lead + Submit Form + Request Quote all Primary often fire on one form.</span></li>
+    <li class="pt"><span class="n">9</span><span><strong>Purchase counting mode suits the business</strong> — "Every" vs "One" — check repeat-purchase logic is a decision, not a default.</span></li>
+    <li class="pt"><span class="n">10</span><span><strong>Micro-conversions aren't Primary</strong> — Page View or Engaged Visit as Primary teaches Smart Bidding to buy cheap curiosity.</span></li>
+  </ol>
+
+  <h3>Is it actually firing?</h3>
+  <ol>
+    <li class="pt"><span class="n">11</span><span><strong>Every Primary webpage tag has fired in the last 365 days</strong> — a tag with a year of silence is uninstalled or blocked, not unlucky.</span></li>
+    <li class="pt"><span class="n">12</span><span><strong>No tag has gone quiet recently</strong> — fired 31–90 days ago but zero in the last 30 = something broke in a site update or consent change.</span></li>
+    <li class="pt"><span class="n">13</span><span><strong>Non-webpage actions (calls, imports) show recent activity.</strong></span></li>
+    <li class="pt"><span class="n">14</span><span><strong>Smart Bidding campaigns have converting Primary actions</strong> — tCPA on a campaign whose conversions never fire is autopilot with no compass.</span></li>
+  </ol>
+
+  <h3>Match tracking to the business model</h3>
+  <ol>
+    <li class="pt"><span class="n">15</span><span><strong>Ecommerce: a Purchase action with revenue values exists.</strong></span></li>
+    <li class="pt"><span class="n">16</span><span><strong>Ecommerce: funnel events (Add to Cart, Begin Checkout) tracked</strong> as secondary signals — they speed up learning on low-volume accounts.</span></li>
+    <li class="pt"><span class="n">17</span><span><strong>Lead gen: at least one real lead conversion</strong> (form, quote, booking).</span></li>
+    <li class="pt"><span class="n">18</span><span><strong>Lead gen: secondary touchpoints tracked</strong> — calls, email clicks, chat — so the account sees the whole enquiry picture.</span></li>
+  </ol>
+
+  <h2>Pass 2 — Money flow <span class="count">(search terms, budgets, bidding) · 21 points</span></h2>
+
+  <h3>Search terms (30 days unless stated)</h3>
+  <ol>
+    <li class="pt"><span class="n">19</span><span><strong>Spend on non-converting terms</strong> — terms with meaningful spend and zero conversions: negative the clearly irrelevant today.</span></li>
+    <li class="pt"><span class="n">20</span><span><strong>Dead terms over 365 days</strong> — a year of spend with nothing back has had its chance; negative immediately.</span></li>
+    <li class="pt"><span class="n">21</span><span><strong>Converting terms that aren't keywords</strong> — 3+ conversions from a term you never added: add as exact match and take bid control.</span></li>
+    <li class="pt"><span class="n">22</span><span><strong>Cannibalisation</strong> — the same term matching in 3+ campaigns means you're bidding against yourself; funnel each term to one campaign with campaign-level negatives.</span></li>
+    <li class="pt"><span class="n">23</span><span><strong>High-impression, near-zero-CTR terms</strong> — hundreds of impressions at under 0.5% CTR drags Quality Score: negative or fix the ad.</span></li>
+    <li class="pt"><span class="n">24</span><span><strong>Terms converting at 3× your average CPA</strong> — negative, or quarantine in a campaign with its own target.</span></li>
+    <li class="pt"><span class="n">25</span><span><strong>Informational searches ("how to", "guide")</strong> — check 3-month data before negating: for service businesses these can be next month's clients. Decide, don't reflex.</span></li>
+    <li class="pt"><span class="n">26</span><span><strong>Competitor-brand searches</strong> — bidding on competitors is a strategy; paying for them by accident is a leak. Move to a dedicated campaign or negate.</span></li>
+  </ol>
+
+  <h3>Budgets &amp; pacing</h3>
+  <ol>
+    <li class="pt"><span class="n">27</span><span><strong>Severe overspend pace</strong> — any campaign tracking 150%+ of its daily budget pace exhausts the month early. Catch it on the 10th, not in the month-end report.</span></li>
+    <li class="pt"><span class="n">28</span><span><strong>Moderate overspend pace (125–150%)</strong> — watch-list and adjust.</span></li>
+    <li class="pt"><span class="n">29</span><span><strong>Underspend &amp; budget-limited mix</strong> — a campaign at half its budget isn't performing, it's coasting — while a winner loses impression share to budget. Reallocate.</span></li>
+    <li class="pt"><span class="n">30</span><span><strong>Seasonal calendar</strong> — know your peaks: budgets up 2–4 weeks BEFORE the peak; in dips, don't panic-spend — test creative instead.</span></li>
+  </ol>
+
+  <h3>Bid strategies</h3>
+  <ol>
+    <li class="pt"><span class="n">31</span><span><strong>Smart Bidding has enough data</strong> — tCPA/tROAS under ~30 conversions a month gives Google nothing to learn from; use Maximise Conversions until volume justifies a target.</span></li>
+    <li class="pt"><span class="n">32</span><span><strong>Manual CPC with real volume</strong> — 30+ conversions a month on manual bidding wastes signal you already paid for.</span></li>
+    <li class="pt"><span class="n">33</span><span><strong>Maximise Conversions without a target</strong> — meaningful spend with no CPA/ROAS constraint spends to the budget, not to profit.</span></li>
+    <li class="pt"><span class="n">34</span><span><strong>Enhanced CPC anywhere</strong> — deprecated; migrate.</span></li>
+    <li class="pt"><span class="n">35</span><span><strong>CPA target vs actual sanity</strong> — target 50% above actuals = Google overbids; 40% below = volume strangled. Targets should sit near reality, then move deliberately.</span></li>
+    <li class="pt"><span class="n">36</span><span><strong>ROAS target vs actual sanity</strong> — same check, other direction.</span></li>
+  </ol>
+
+  <h3>Bid adjustments (180-day windows)</h3>
+  <ol>
+    <li class="pt"><span class="n">37</span><span><strong>Device</strong> — mobile/desktop/tablet converting 30%+ apart deserves an adjustment.</span></li>
+    <li class="pt"><span class="n">38</span><span><strong>Day &amp; hour</strong> — if Tuesdays convert and Sundays burn, schedule it.</span></li>
+    <li class="pt"><span class="n">39</span><span><strong>Age</strong> — meaningful conversion-rate gaps across age ranges.</span></li>
+    <li class="pt"><span class="n">40</span><span><strong>Gender</strong> — same test.</span></li>
+    <li class="pt"><span class="n">41</span><span><strong>Audiences</strong> — segments converting far above/below average: bid up the winners, trim the rest.</span></li>
+  </ol>
+
+  <h2>Pass 3 — The compounders <span class="count">(ads, Quality Score, landing pages) · 19 points</span></h2>
+
+  <h3>Ad coverage &amp; health</h3>
+  <ol>
+    <li class="pt"><span class="n">42</span><span><strong>No ETA-only ad groups</strong> — Expanded Text Ads are sunset; Google can't even edit them. RSAs, now.</span></li>
+    <li class="pt"><span class="n">43</span><span><strong>No single-ad ad groups</strong> — one ad means no test running, which means no learning.</span></li>
+    <li class="pt"><span class="n">44</span><span><strong>No RSAs rated Poor</strong> — usually headlines too similar; give the machine variety to assemble.</span></li>
+    <li class="pt"><span class="n">45</span><span><strong>Push Average RSAs up</strong> — add genuinely different headlines: USPs, numbers, varied CTAs.</span></li>
+    <li class="pt"><span class="n">46</span><span><strong>No disapproved ads sitting unfixed.</strong></span></li>
+    <li class="pt"><span class="n">47</span><span><strong>"Approved (limited)" ads reviewed</strong> — know what the restriction is and whether you can remove it.</span></li>
+    <li class="pt"><span class="n">48</span><span><strong>Enabled ads with zero impressions (30d)</strong> — disapproval or Ad Rank is keeping them out of the auction entirely.</span></li>
+  </ol>
+
+  <h3>Assets &amp; PMax</h3>
+  <ol>
+    <li class="pt"><span class="n">49</span><span><strong>Sitelinks on every meaningful campaign</strong> — 4+ per campaign; free SERP real estate.</span></li>
+    <li class="pt"><span class="n">50</span><span><strong>Callouts everywhere</strong> — 4–6 short trust/benefit lines.</span></li>
+    <li class="pt"><span class="n">51</span><span><strong>PMax asset groups complete</strong> — missing required assets locks the campaign out of whole networks.</span></li>
+    <li class="pt"><span class="n">52</span><span><strong>No PMax assets rated Low</strong> — replace, don't accumulate.</span></li>
+    <li class="pt"><span class="n">53</span><span><strong>PMax has a real video</strong> — without one Google auto-generates something you would never sign off.</span></li>
+  </ol>
+
+  <h3>Quality Score (where the spend is)</h3>
+  <ol>
+    <li class="pt"><span class="n">54</span><span><strong>No QS ≤4 keywords carrying real spend</strong> — you're paying a surcharge on every click.</span></li>
+    <li class="pt"><span class="n">55</span><span><strong>QS 5–6 keywords with spend</strong> — the cheapest CPC savings in the account usually live here.</span></li>
+    <li class="pt"><span class="n">56</span><span><strong>"Below average" landing page experience flags</strong> — then actually test the page speed (Core Web Vitals), not just the score.</span></li>
+    <li class="pt"><span class="n">57</span><span><strong>"Below average" expected CTR flags</strong> — the ad, not the page: put the keyword in the headlines, sharpen the offer.</span></li>
+    <li class="pt"><span class="n">58</span><span><strong>"Below average" ad relevance flags</strong> — restructure: tighter ad groups, copy that addresses the exact theme.</span></li>
+  </ol>
+
+  <h3>Landing pages (the bit most audits skip)</h3>
+  <ol>
+    <li class="pt"><span class="n">59</span><span><strong>A visible call-to-action above the fold, with intent in the copy</strong> — "Get a Quote", not "Learn More".</span></li>
+    <li class="pt"><span class="n">60</span><span><strong>Form friction and trust</strong> — more than ~5 visible fields loses completions; and if there's no social proof anywhere above the fold (reviews, counts, guarantees), you're asking for a click on faith.</span></li>
+  </ol>
+
+  <div class="cta">
+    <p>Every account has blind spots — even the ones you know inside out. Campaign Owl runs these checks on every account, every day, and tells you when something moved. Run your first audit free and find out what 18 years of PPC experience looks like, automated.</p>
+    <a class="btn" href="https://app.campaignowl.com/signup">Run your first audit free</a>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Campaign Owl — a trading name of Online PPC By Maria Ltd · <a href="privacy.html" style="color:#666">Privacy</a> · <a href="terms.html" style="color:#666">Terms</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

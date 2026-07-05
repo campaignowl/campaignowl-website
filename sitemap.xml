@@ -10,6 +10,12 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://campaignowl.co.uk/" />
   </url>
   <url>
+    <loc>https://campaignowl.co.uk/checklist.html</loc>
+    <lastmod>2026-07-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://campaignowl.co.uk/terms.html</loc>
     <lastmod>2026-05-11</lastmod>
     <changefreq>monthly</changefreq>
