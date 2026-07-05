@@ -184,6 +184,9 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .hero p{font-size:18px;color:var(--text);max-width:580px;margin:0 auto 40px;line-height:1.7}
 .hero-contact{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none}
 .hero-contact:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,0.25);text-decoration:none;color:#000}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
+.hero-demo{display:inline-flex;align-items:center;padding:14px 28px;border-radius:8px;border:1px solid var(--border);color:var(--bright);font-weight:600;font-size:14px;transition:border-color 0.2s}
+.hero-demo:hover{border-color:var(--amber);text-decoration:none;color:var(--bright)}
 .hero-platforms{margin-top:48px;display:flex;justify-content:center;gap:32px;align-items:center;opacity:0.4}
 .hero-platforms span{font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
 
@@ -307,7 +310,7 @@ footer a:hover{color:var(--amber)}
 
 /* ANIMATIONS */
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.hero-badge,.hero h1,.hero p,.hero-contact,.hero-platforms{animation:fadeUp 0.6s ease both}
+.hero-badge,.hero h1,.hero p,.hero-ctas,.hero-platforms{animation:fadeUp 0.6s ease both}
 .hero h1{animation-delay:0.1s}
 .hero p{animation-delay:0.2s}
 .hero-contact{animation-delay:0.3s}
@@ -339,7 +342,10 @@ footer a:hover{color:var(--amber)}
     <div class="hero-badge">Now live — <span>14-day free trial</span></div>
     <h1>Your <em>PPC Co-Pilot.</em></h1>
     <p>The PPC operations platform — audits, daily tasks, performance, and client comms in one place. Campaign Owl watches your Google Ads accounts 24/7, runs your daily optimisation rota, and writes your client updates for you. Built by a PPC specialist with 18 years experience.</p>
-    <a href="https://app.campaignowl.com" class="hero-contact">Try it free →</a>
+    <div class="hero-ctas">
+      <a href="https://app.campaignowl.com" class="hero-contact">Try it free →</a>
+      <a href="https://app.campaignowl.com/api/demo/login" class="hero-demo">Explore the live demo</a>
+    </div>
     <div class="hero-platforms">
       <span>Google Ads</span>
     </div>
