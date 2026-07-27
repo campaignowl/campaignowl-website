@@ -83,27 +83,27 @@
     var html =
       '<div id="cc-banner" role="dialog" aria-live="polite" aria-label="Cookie consent" ' +
       'style="position:fixed;left:0;right:0;bottom:0;z-index:9999;' +
-      'background:#0d0d0d;border-top:1px solid #1a1a1a;color:#a3a3a3;' +
+      'background:#fffdf8;border-top:1px solid #eee5d6;color:#5c5344;box-shadow:0 -4px 24px rgba(31,26,18,0.08);' +
       'font-family:DM Sans,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;' +
       'box-shadow:0 -4px 24px rgba(0,0,0,0.5)">' +
         '<div style="max-width:1100px;margin:0 auto;padding:18px 24px;' +
         'display:flex;flex-direction:column;gap:14px">' +
           '<div>' +
-            '<p style="font-weight:700;color:#f5f5f5;font-size:14px;margin:0 0 6px">Cookies</p>' +
+            '<p style="font-weight:700;color:#1f1a12;font-size:14px;margin:0 0 6px">Cookies</p>' +
             '<p style="font-size:13px;line-height:1.6;margin:0">' +
               'We\'d like to use optional analytics and marketing cookies to understand how Campaign Owl is found and used. ' +
               'Essential security cookies (for the contact form) are always on. ' +
-              '<a href="privacy.html" style="color:#f59e0b;text-decoration:underline">Read our privacy policy</a>.' +
+              '<a href="privacy.html" style="color:#b45309;text-decoration:underline">Read our privacy policy</a>.' +
             '</p>' +
           '</div>' +
           '<div style="display:flex;gap:10px;flex-wrap:wrap">' +
             '<button id="cc-reject" type="button" ' +
             'style="flex:1;min-width:140px;padding:10px 14px;border:1px solid #2a2a2a;' +
-            'background:transparent;color:#f5f5f5;font-size:13px;font-weight:600;' +
+            'background:transparent;color:#1f1a12;border:1px solid #eee5d6 !important;font-size:13px;font-weight:600;' +
             'border-radius:8px;cursor:pointer;font-family:inherit">Reject optional</button>' +
             '<button id="cc-accept" type="button" ' +
             'style="flex:1;min-width:140px;padding:10px 14px;border:none;' +
-            'background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;' +
+            'background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;' +
             'font-size:13px;font-weight:700;border-radius:8px;cursor:pointer;font-family:inherit">Accept all</button>' +
           '</div>' +
         '</div>' +

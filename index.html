@@ -176,10 +176,15 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050505;--surface:#0d0d0d;--card:#111;--border:#1a1a1a;
-  --text:#a3a3a3;--bright:#f5f5f5;--dim:#666;
-  --amber:#f59e0b;--amber-dim:#92610a;--amber-glow:rgba(245,158,11,0.08);
-  --green:#22c55e;--red:#ef4444;--blue:#60a5fa;
+  /* Light theme (2026-07-27). Warm paper whites matching the in-app design
+     system and transactional emails (cream #faf8f3 family), amber brand
+     accent darkened to amber-700 for text contrast on light backgrounds.
+     The old dark palette made the light app screenshots look like a
+     different product; light-on-light reads as one brand. */
+  --bg:#fffdf8;--bg-alt:#faf6ec;--surface:#faf7f0;--card:#ffffff;--border:#eee5d6;
+  --text:#5c5344;--bright:#1f1a12;--dim:#8a7c66;
+  --amber:#b45309;--amber-dim:#d97706;--amber-glow:rgba(245,158,11,0.09);
+  --green:#16a34a;--red:#dc2626;--blue:#2563eb;
 }
 html{scroll-behavior:smooth}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
@@ -192,7 +197,7 @@ body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xm
 .container{max-width:960px;margin:0 auto;padding:0 24px}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(5,5,5,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;background:rgba(255,253,248,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 nav .container{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--bright)}
 .nav-logo-icon{width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);display:flex;align-items:center;justify-content:center;font-size:18px}
@@ -202,14 +207,14 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 
 /* HERO */
 .hero{padding:160px 0 100px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;top:60px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,0.06) 0%,transparent 70%);pointer-events:none}
+.hero::before{content:'';position:absolute;top:60px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(245,158,11,0.13) 0%,transparent 70%);pointer-events:none}
 .hero-badge{display:inline-block;padding:6px 16px;border-radius:20px;border:1px solid var(--border);font-size:12px;color:var(--dim);margin-bottom:32px;letter-spacing:0.5px}
 .hero-badge span{color:var(--amber)}
 .hero h1{font-family:'Playfair Display',serif;font-size:clamp(36px,6vw,64px);font-weight:800;color:var(--bright);line-height:1.1;margin-bottom:24px;letter-spacing:-1px}
 .hero h1 em{font-style:normal;color:var(--amber)}
 .hero p{font-size:18px;color:var(--text);max-width:580px;margin:0 auto 40px;line-height:1.7}
-.hero-contact{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none}
-.hero-contact:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,0.25);text-decoration:none;color:#000}
+.hero-contact{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-weight:700;font-size:14px;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;border:none}
+.hero-contact:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(245,158,11,0.35);text-decoration:none;color:#fff}
 .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;align-items:center}
 .hero-demo{display:inline-flex;align-items:center;padding:14px 28px;border-radius:8px;border:1px solid var(--border);color:var(--bright);font-weight:600;font-size:14px;transition:border-color 0.2s}
 .hero-demo:hover{border-color:var(--amber);text-decoration:none;color:var(--bright)}
@@ -324,7 +329,7 @@ footer a:hover{color:var(--amber)}
 .contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--dim)}
 .contact-form textarea{resize:vertical;min-height:120px}
 .contact-field{margin-bottom:20px}
-.contact-submit{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-size:14px;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;font-family:'DM Sans',sans-serif}
+.contact-submit{width:100%;padding:14px;border:none;border-radius:8px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s;font-family:'DM Sans',sans-serif}
 .contact-submit:hover{transform:translateY(-1px);box-shadow:0 4px 16px rgba(245,158,11,0.3)}
 .contact-submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;box-shadow:none}
 .contact-success{text-align:center;padding:40px 20px}
@@ -370,7 +375,12 @@ footer a:hover{color:var(--amber)}
     <p>The PPC operations platform — audits, daily tasks, performance, and client comms in one place. Campaign Owl watches your Google Ads accounts 24/7, runs your daily optimisation rota, and writes your client updates for you. Built by a PPC specialist with 18 years experience.</p>
     <div class="hero-ctas">
       <a href="https://app.campaignowl.com" class="hero-contact">Try it free →</a>
-      <a href="https://app.campaignowl.com/api/demo/login" class="hero-demo">Explore the live demo</a>
+      <a href="https://app.campaignowl.com/api/demo/login" class="hero-demo">Try the live demo — no sign-up needed</a>
+    </div>
+    <div style="margin-top:22px;display:flex;justify-content:center;gap:10px 28px;flex-wrap:wrap;font-size:12.5px;color:var(--dim)">
+      <span>✓ 14-day free trial</span>
+      <span>✓ No contracts — cancel anytime</span>
+      <span>✓ Read-only by default: your accounts stay untouched</span>
     </div>
     <div class="hero-platforms">
       <span>Google Ads</span>
@@ -414,7 +424,7 @@ footer a:hover{color:var(--amber)}
       <p style="font-size:15px;line-height:1.8">Built by a PPC specialist with <span class="highlight">18 years of hands-on experience</span> managing millions in ad spend. Audits, daily tasks, performance investigations and client comms — every part is grounded in how agencies actually run PPC, day to day.</p>
     </div>
     <div style="margin-top:48px">
-      <img src="screenshot-dashboard.png" alt="Campaign Owl tactical PPC dashboard showing today, yesterday, 7-day and 30-day spend KPIs across Google Ads accounts with biggest movers section" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:0 25px 50px rgba(0,0,0,0.4)" onerror="this.style.display='none'">
+      <img src="screenshot-dashboard.png" alt="Campaign Owl tactical PPC dashboard showing today, yesterday, 7-day and 30-day spend KPIs across Google Ads accounts with biggest movers section" loading="lazy" style="width:100%;border-radius:12px;border:1px solid var(--border);box-shadow:0 25px 50px rgba(31,26,18,0.12)" onerror="this.style.display='none'">
     </div>
   </div>
 </section>
@@ -627,6 +637,26 @@ footer a:hover{color:var(--amber)}
         <h3>Share with Clients (No Login)</h3>
         <p>One-click public share link for any audit. Send a URL, the client sees a clean read-only report (white-label aware if you've branded). No login, no signup, no PDF attachment. Revoke or regenerate any time — tokens 404 the moment you revoke.</p>
       </div>
+      <div class="feature-card">
+        <div class="feature-icon">👥</div>
+        <h3>Team Task Assignment</h3>
+        <p>Assign or escalate any task to a teammate — they get an email with the task, account, priority and your note. Spot an issue in an audit, turn it into a task, hand it to whoever owns the fix. Reassign or unassign any time.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📬</div>
+        <h3>Reports Hub</h3>
+        <p>Every account's client reporting on one screen: weekly or monthly scheduled audit reports, monthly activity summaries listing every task done and why it mattered, and read-only share links. Set it once — clients hear from you on schedule.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌦️</div>
+        <h3>Weather Insights</h3>
+        <p>For weather-driven businesses — trades, travel, seasonal retail — Campaign Owl watches the 7-day forecast for each account's location and flags heatwaves, cold snaps, snow, storms and heavy rain before demand shifts, with what each means for your campaigns.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚔️</div>
+        <h3>Competitor Ads</h3>
+        <p>Track competitor domains per account, jump straight to their live ads in Google's Ads Transparency Centre, and run an honest AI side-by-side against your own ads — where they win, where you win, and what to test next.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -690,7 +720,7 @@ footer a:hover{color:var(--amber)}
       </div>
       <!-- Pro -->
       <div style="border:2px solid var(--amber);border-radius:12px;padding:28px 20px;background:var(--amber-glow);position:relative">
-        <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--amber);color:#000;font-size:10px;font-weight:700;padding:3px 12px;border-radius:10px">MOST POPULAR</div>
+        <div style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--amber);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:10px">MOST POPULAR</div>
         <div style="font-size:14px;font-weight:700;color:var(--bright)">Pro</div>
         <div style="font-size:11px;color:var(--dim);margin-top:4px">For growing agencies & freelancers</div>
         <div style="margin:20px 0"><span style="font-size:32px;font-weight:800;color:var(--amber)">£299</span><span style="font-size:13px;color:var(--dim)">/month + VAT</span></div>
@@ -702,7 +732,7 @@ footer a:hover{color:var(--amber)}
           ✓ White-label reports & emails<br>
           ✓ Monthly client activity reports
         </div>
-        <a href="https://app.campaignowl.com" style="display:block;text-align:center;padding:10px;background:var(--amber);color:#000;border-radius:8px;font-size:13px;font-weight:700;margin-top:20px;text-decoration:none;transition:transform 0.2s">Start Free Trial</a>
+        <a href="https://app.campaignowl.com" style="display:block;text-align:center;padding:10px;background:var(--amber);color:#fff;border-radius:8px;font-size:13px;font-weight:700;margin-top:20px;text-decoration:none;transition:transform 0.2s">Start Free Trial</a>
       </div>
       <!-- Agency -->
       <div style="border:1px solid var(--border);border-radius:12px;padding:28px 20px;background:var(--card)">
