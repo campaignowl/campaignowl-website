@@ -3,6 +3,32 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Google tag with Consent Mode v2 (2026-07-27). Loads for EVERY visitor
+     but starts with ALL consent denied — cookieless pings only, no cookies,
+     GDPR-compliant. cookie-consent.js upgrades consent to granted on Accept
+     (see init at the bottom of this file). This replaces the old hard-gated
+     load (script only injected after Accept), which Google Ads flagged as
+     "Your website is missing a Google tag" — its checker never consents,
+     and non-consenting visitors were genuinely invisible to attribution. -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied'
+  });
+  /* Carries gclid through internal navigation without cookies while consent
+     is denied — preserves ad-click attribution for consented conversions. */
+  gtag('set', 'url_passthrough', true);
+  gtag('js', new Date());
+  gtag('config', 'G-LWRQTR3Q8H', {
+    linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] }
+  });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWRQTR3Q8H"></script>
 <title>Campaign Owl — Google Ads Audit Tool & PPC Operations Platform</title>
 <meta name="description" content="Google Ads audit tool for UK & Ireland PPC agencies. Severity-scored findings with monthly £ at risk, recurring task management, and client-ready reports. Built by a senior PPC with 18 years' agency experience. 14-day free trial.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -826,27 +852,25 @@ async function submitContactForm() {
 <script src="cookie-consent.js"></script>
 <script>
   // Cookie consent banner. reCAPTCHA stays exempt (security cookie, PECR-
-  // exempt). The Google tag below loads ONLY after the user accepts (opt-in).
-  // It's the SAME GA4 property as the app (G-LWRQTR3Q8H) with a cross-domain
-  // linker, so the Google click ID (gclid) carries from this marketing site
-  // to the app (app.campaignowl.com) where signup completes. Without this, an
-  // ad click that lands here and converts in the app does NOT attribute back
-  // to the campaign — the two are separate domains and cookies don't share.
+  // exempt). The Google tag itself now loads in <head> for everyone under
+  // Consent Mode v2 with ALL consent defaulted to denied (cookieless) —
+  // this banner's Accept upgrades consent to granted, which is when GA4
+  // starts using cookies and full attribution. The cross-domain linker in
+  // the head config carries the Google click ID (gclid) from this site to
+  // app.campaignowl.com where signup completes.
   cookieConsent.init({
     tags: [
       {
         name: 'Google tag (GA4)',
         load: function () {
-          var s = document.createElement('script');
-          s.async = true;
-          s.src = 'https://www.googletagmanager.com/gtag/js?id=G-LWRQTR3Q8H';
-          document.head.appendChild(s);
-          window.dataLayer = window.dataLayer || [];
-          window.gtag = function () { window.dataLayer.push(arguments); };
-          window.gtag('js', new Date());
-          window.gtag('config', 'G-LWRQTR3Q8H', {
-            linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] }
-          });
+          if (window.gtag) {
+            window.gtag('consent', 'update', {
+              ad_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+              analytics_storage: 'granted'
+            });
+          }
         }
       }
     ]
