@@ -27,6 +27,15 @@
   gtag('config', 'G-LWRQTR3Q8H', {
     linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] }
   });
+  /* Google Ads destination (2026-08-03). Its absence is why every campaign
+     showed "Eligible (Misconfigured) — Your website is missing a Google
+     tag": the crawler checks the ad's landing page for an AW- tag, and this
+     site only carried GA4. The linker matches the GA4 config so the gclid
+     survives the hop to app.campaignowl.com, where the Trial Started
+     conversion actually fires. */
+  gtag('config', 'AW-18263347504', {
+    linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] }
+  });
 </script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWRQTR3Q8H"></script>
 <title>Campaign Owl — Google Ads Audit Tool & PPC Operations Platform</title>
