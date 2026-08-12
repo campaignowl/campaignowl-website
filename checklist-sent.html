@@ -28,7 +28,7 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free 60-Point Google Ads Audit Checklist — CampaignOwl</title>
+<title>Checklist sent — Campaign Owl</title>
 <meta name="description" content="The exact 60-point Google Ads audit checklist built from 18 years of hands-on PPC management — tracking, search terms, budgets, bidding, ads and Quality Score. Free, with a short email course on using it.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icon-32.png" type="image/png" sizes="32x32">
@@ -75,96 +75,19 @@ footer p{font-size:12px;color:#444}
 .recaptcha-note a{color:#666}
 @media (max-width:600px){h1{font-size:26px}.card{padding:24px}}
 </style>
+
+<meta name="robots" content="noindex">
 </head>
 <body>
-
-<nav>
-  <div class="container">
-    <div class="nav-logo-icon">🦉</div>
-    <a href="index.html" class="nav-logo-text" style="color:var(--bright)">CampaignOwl</a>
-  </div>
-</nav>
-
-<div class="container">
-  <div class="hero">
-    <p class="eyebrow">Free download · No fluff</p>
-    <h1>The 60-Point Google Ads Audit Checklist</h1>
-    <p class="sub">Built from 18 years of hands-on PPC management. Every point mirrors a check our audit engine actually runs on live accounts — no invented points, no padding.</p>
-    <div class="points">
-      <span class="point">Tracking &amp; conversions · 18 points</span>
-      <span class="point">Search terms, budgets &amp; bidding · 21 points</span>
-      <span class="point">Ads, Quality Score &amp; landing pages · 19 points</span>
-    </div>
-  </div>
-
-  <div class="card" id="form-card">
-    <h2>Get the checklist</h2>
-    <p class="hint">Plus a short 4-email course on using it — one pass at a time, practitioner to practitioner.</p>
-    <form id="lm-form">
-      <label for="lm-name">First name <span style="color:#666;font-weight:400">(optional)</span></label>
-      <input type="text" id="lm-name" maxlength="100" autocomplete="given-name">
-      <label for="lm-email">Email</label>
-      <input type="email" id="lm-email" required maxlength="320" autocomplete="email" placeholder="you@agency.co.uk">
-      <button type="submit" id="lm-btn">Send me the checklist</button>
-      <p class="consent">Send me the checklist plus a short email course on using it. Unsubscribe anytime.</p>
-      <p class="err" id="lm-err"></p>
-      <p class="recaptcha-note">Protected by reCAPTCHA. Google <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Privacy</a> · <a href="https://policies.google.com/terms" rel="noopener" target="_blank">Terms</a></p>
-    </form>
-    <div class="success" id="lm-success">
-      <h2>Check your inbox 📬</h2>
+<div class="wrap">
+  <div class="card">
+    <div class="success" style="display:block">
+      <h1>Check your inbox 📬</h1>
       <p>The checklist is on its way to your email — along with the one check to run before any of the others.</p>
+      <p style="margin-top:24px"><a href="https://app.campaignowl.com/signup">Start a free trial</a> and Campaign Owl runs these checks for you, every night, across every account.</p>
+      <p style="margin-top:16px"><a href="/">Back to campaignowl.co.uk</a></p>
     </div>
   </div>
-
-  <p class="trust">Written by Maria — PPC manager for 18 years, founder of Campaign Owl.</p>
 </div>
-
-<footer>
-  <div class="container">
-    <p>© 2026 Campaign Owl — a trading name of Online PPC By Maria Ltd · <a href="privacy.html" style="color:#666">Privacy</a> · <a href="terms.html" style="color:#666">Terms</a></p>
-  </div>
-</footer>
-
-<script src="https://www.google.com/recaptcha/api.js?render=6Ler86ksAAAAALPhm0GaH8BnFDjQuocFtTtN1Sfj" async></script>
-<script>
-document.getElementById('lm-form').addEventListener('submit', async function (e) {
-  e.preventDefault();
-  var btn = document.getElementById('lm-btn');
-  var err = document.getElementById('lm-err');
-  err.style.display = 'none';
-  btn.disabled = true;
-  btn.textContent = 'Sending…';
-  try {
-    var recaptchaToken;
-    if (typeof grecaptcha !== 'undefined') {
-      recaptchaToken = await grecaptcha.execute('6Ler86ksAAAAALPhm0GaH8BnFDjQuocFtTtN1Sfj', { action: 'lead_magnet' });
-    }
-    var res = await fetch('https://app.campaignowl.com/api/lead-magnet', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        name: document.getElementById('lm-name').value,
-        email: document.getElementById('lm-email').value,
-        recaptchaToken: recaptchaToken,
-        source: 'checklist'
-      })
-    });
-    if (!res.ok) throw new Error((await res.json()).error || 'Something went wrong');
-    // Redirect rather than reveal an inline success block. A URL change is
-    // the only reliable conversion signal for this form: a GTM form-submit
-    // trigger fires even when the API rejects the submission, and this
-    // handler is AJAX so nothing navigates on its own. /checklist-sent.html
-    // is only reached on a genuine 2xx, so a page-view trigger there counts
-    // real signups and nothing else.
-    window.location.href = '/checklist-sent.html';
-  } catch (ex) {
-    err.textContent = ex.message || 'Something went wrong — please try again.';
-    err.style.display = 'block';
-    btn.disabled = false;
-    btn.textContent = 'Send me the checklist';
-  }
-});
-</script>
-
 </body>
 </html>
