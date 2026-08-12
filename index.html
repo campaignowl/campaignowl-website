@@ -867,7 +867,10 @@ async function submitContactForm() {
     }
 
     document.getElementById('contact-form').style.display = 'none';
-    document.getElementById('cf-success').style.display = 'block';
+    // Navigate rather than reveal an inline block. The submit event fires
+    // even when the API rejects the message, so it is not a safe conversion
+    // signal; /message-sent.html is only reached on a genuine 2xx.
+    window.location.href = '/message-sent.html';
   } catch (err) {
     errEl.textContent = err.message || 'Failed to send. Please try again.';
     errEl.style.display = 'block';
@@ -920,6 +923,21 @@ async function submitContactForm() {
       }
     ]
   });
+</script>
+<script>
+  // An in-page anchor is resolved before late layout is done: sections
+  // above #contact expand as they reveal and as images size themselves,
+  // which pushes the target down and leaves the visitor somewhere higher
+  // up the page — reported landing on Features rather than the form.
+  // Re-scroll after load, when the real position is known.
+  (function () {
+    if (!window.location.hash) return;
+    var settle = function () {
+      var el = document.querySelector(window.location.hash);
+      if (el) el.scrollIntoView({ block: 'start' });
+    };
+    window.addEventListener('load', function () { setTimeout(settle, 120); });
+  })();
 </script>
 </body>
 </html>
