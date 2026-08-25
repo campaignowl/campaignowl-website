@@ -47,10 +47,32 @@
   var registeredTags = [];
   var initialised = false;
 
+
+  // Consent Mode v2 upgrade. The Google tag loads on every page with all
+  // consent DEFAULTED TO DENIED (see the gtag snippet in each page head);
+  // this call flips it to granted. It must run on EVERY page view for an
+  // accepted visitor - Consent Mode state is per page load, not persisted
+  // by Google - which is why decide() calls it too, not just the Accept
+  // click. This call being missing is why campaignowl.co.uk sent no
+  // reportable GA4 traffic while the tag was provably on the page (found
+  // 2026-08-25: accepting visitors stayed analytics_storage denied, so
+  // hits carried no client id and GA4 reports showed only the app).
+  function grantConsentUpgrade() {
+    if (typeof window.gtag === 'function') {
+      window.gtag('consent', 'update', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted'
+      });
+    }
+  }
+
   function applyAccept() {
     try { localStorage.setItem(STORAGE_KEY, 'granted'); } catch (e) {}
     try { localStorage.setItem(STORAGE_TS_KEY, new Date().toISOString()); } catch (e) {}
     hideBanner();
+    grantConsentUpgrade();
     loadAllTags();
   }
 
@@ -123,8 +145,9 @@
   function decide() {
     var choice = currentChoice();
     if (choice === 'granted') {
-      // Returning visitor who already accepted. Load any registered tags
-      // immediately, no banner needed.
+      // Returning visitor who already accepted: re-upgrade Consent Mode
+      // (per page load) and load any registered tags, no banner needed.
+      grantConsentUpgrade();
       if (registeredTags.length > 0) loadAllTags();
       return;
     }
