@@ -64,7 +64,23 @@
     }
   }
 
+  // Funnel step 0: one anonymous beacon per browser session so the app's
+  // /admin funnel can start at 'Visited the website'. text/plain body =
+  // no CORS preflight; sendBeacon survives navigation. No cookies, no PII.
+  function beacon(ft) {
+    var KEY_SENT = 'co_visit_sent';
+    try { if (sessionStorage.getItem(KEY_SENT)) return; } catch (e) {}
+    var payload = JSON.stringify({ s: ft.s, m: ft.m, c: ft.c || null, p: location.pathname + location.search, r: document.referrer || null });
+    var url = 'https://app.campaignowl.com/api/visit';
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon(url, new Blob([payload], { type: 'text/plain' }));
+      else fetch(url, { method: 'POST', body: payload, headers: { 'Content-Type': 'text/plain' }, keepalive: true }).catch(function () {});
+      sessionStorage.setItem(KEY_SENT, '1');
+    } catch (e) {}
+  }
+
   var ft = load();
+  beacon(ft);
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () { decorate(ft); });
   } else {
