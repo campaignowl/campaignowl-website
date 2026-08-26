@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag('consent', 'default', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+  gtag('set', 'url_passthrough', true);
+  gtag('js', new Date());
+  gtag('config', 'G-LWRQTR3Q8H', { linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] } });
+  gtag('config', 'AW-18263347504', { linker: { domains: ['campaignowl.co.uk', 'app.campaignowl.com'] } });
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LWRQTR3Q8H"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads said my website was missing a Google tag. The tag was there. — Campaign Owl</title>
+<meta name="description" content="Why "Your website is missing a Google tag" often means "nobody consented", what a headless browser proved about Consent Mode v2 and the Google Ads tag, and the 90-second check for any site.">
+<link rel="canonical" href="https://campaignowl.co.uk/blog/google-ads-missing-google-tag-consent-mode.html">
+<meta property="og:title" content="Google Ads said my website was missing a Google tag. The tag was there. — Campaign Owl">
+<meta property="og:description" content="Why "Your website is missing a Google tag" often means "nobody consented", what a headless browser proved about Consent Mode v2 and the Google Ads tag, and the 90-second check for any site.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://campaignowl.co.uk/blog/google-ads-missing-google-tag-consent-mode.html">
+<meta property="og:image" content="https://campaignowl.co.uk/og-image.png">
+<meta property="og:site_name" content="Campaign Owl">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/icon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#fffdf8;--surface:#faf7f0;--border:#eee5d6;--text:#5c5344;--bright:#1f1a12;--amber:#b45309;--dim:#8a8070}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;line-height:1.75;-webkit-font-smoothing:antialiased}
+a{color:var(--amber);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:720px;margin:0 auto;padding:0 24px}
+nav{padding:16px 0;border-bottom:1px solid var(--border);margin-bottom:40px}
+nav .container{display:flex;align-items:center;gap:10px;max-width:960px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;color:var(--bright)}
+.nav-links{margin-left:auto;display:flex;gap:18px;font-size:13px}
+.nav-links a{color:var(--text)}
+.content{padding:0 0 72px}
+.eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--amber);font-weight:700;margin-bottom:10px}
+h1{font-size:34px;line-height:1.15;font-weight:800;color:var(--bright);margin-bottom:12px;letter-spacing:-.01em}
+.meta{font-size:13px;color:var(--dim);margin-bottom:32px}
+h2{font-size:21px;font-weight:700;color:var(--bright);margin-top:36px;margin-bottom:10px}
+h3{font-size:16px;font-weight:700;color:var(--bright);margin-top:24px;margin-bottom:8px}
+p{margin-bottom:16px;font-size:15.5px}
+ul,ol{margin:0 0 16px 22px;font-size:15.5px}li{margin-bottom:6px}
+blockquote{border-left:3px solid var(--amber);padding:6px 16px;margin:20px 0;color:var(--bright);background:var(--surface);border-radius:0 8px 8px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14px;margin:18px 0 24px}
+th,td{padding:10px 12px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top}
+th{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);background:var(--surface)}
+td:first-child{font-weight:600;color:var(--bright);width:34%}
+.cta{margin:36px 0;padding:22px 24px;border:1px solid var(--border);border-radius:14px;background:var(--surface)}
+.cta p{margin-bottom:12px}
+.btn{display:inline-block;padding:11px 18px;border-radius:8px;background:#f59e0b;color:#fff!important;font-weight:700;font-size:14px;text-decoration:none!important}
+.btn.secondary{background:transparent;color:var(--bright)!important;border:1px solid var(--border)}
+.note{font-size:13px;color:var(--dim);margin-top:24px}
+.card{display:block;padding:18px 20px;border:1px solid var(--border);border-radius:12px;margin-bottom:14px;background:#fff}
+.card h3{margin:0 0 6px}.card p{margin:0;font-size:14px}
+footer{border-top:1px solid var(--border);padding:24px 0;text-align:center}
+footer p{font-size:12px;color:var(--dim)}
+footer .links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:10px;font-size:13px}
+@media(max-width:600px){h1{font-size:28px}.nav-links{gap:12px}}</style>
+</head>
+<body>
+<nav>
+  <div class="container">
+    <a href="/" class="nav-logo"><img src="/logo-512.png" alt="Campaign Owl" width="32" height="32" style="border-radius:8px"> Campaign Owl</a>
+    <div class="nav-links">
+      <a href="https://app.campaignowl.com/free-audit">Free audit</a>
+      <a href="/blog/">Blog</a>
+      <a href="/compare/">Compare</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="https://app.campaignowl.com" style="color:var(--amber);font-weight:600">Sign in →</a>
+    </div>
+  </div>
+</nav>
+<div class="container content">
+  <p class="eyebrow">Build in public · Tracking</p>
+  <h1>Google Ads said my website was missing a Google tag. The tag was there.</h1>
+  <p class="meta">Maria Waters · 27 August 2026 · 5 min read</p>
+
+<p>I build a Google Ads audit tool. In August, every campaign in my own account was flagged <em>Eligible (Misconfigured) — Your website is missing a Google tag</em>. My own tracking health check showed eight green ticks. Both were telling the truth, which is the interesting part.</p>
+
+<h2>Part one: it genuinely was missing</h2>
+<p>The first answer was embarrassing and simple. The marketing site carried the GA4 tag and nothing else. Google Ads' checker looks at an ad's landing page for the Ads (AW-) tag specifically, and it wasn't there. My tracking checks had interrogated the Google Ads account's <em>configuration</em> — conversion actions, statuses, counting settings — and none of them read what Google itself was already saying about the campaigns. I added the AW config, and a check that reads each campaign's primary status and its reasons, the same day.</p>
+<p>Then the flags didn't clear.</p>
+
+<h2>Part two: the tag that was present and said nothing</h2>
+<p>I verified the tag on every page three times. Present, correct, loading. So I pointed a headless browser at the site and watched the network, which is the only thing that settles arguments like this.</p>
+<blockquote>With consent denied — the default state, and the state every crawler is permanently in — the Google Ads tag made <strong>zero</strong> requests to any Google Ads endpoint. Not a cookieless ping, nothing. After clicking Accept: five requests, immediately.</blockquote>
+<p>I tried the things you'd try: <code>ads_data_redaction</code> on and off, loading gtag with the AW id instead of the GA4 id, firing an explicit conversion event. All zero until consent was granted.</p>
+<p>So for Google Ads specifically, on this setup, Consent Mode v2 behaves like basic mode: the tag loads, configures, and then stays silent until someone accepts. Google Ads has never received anything from the container, and it cannot tell "silent" from "absent". Hence the warning.</p>
+
+<h2>What that means for you</h2>
+<ol>
+  <li><strong>The warning is your consent rate showing up in the Ads UI.</strong> On a B2B site where most visitors ignore the banner, Google may never hear from your tag at all. No code change clears it; enough accepting visitors do. Verify the tag is present once, then stop hunting the HTML.</li>
+  <li><strong>It doesn't stop ads serving.</strong> "Eligible (Misconfigured)" is still eligible.</li>
+  <li><strong>The real problem is measurement, not the warning.</strong> Every non-consenting visitor is invisible for attribution — not modelled, not estimated. On a low-traffic site your conversion data is a sample of the people who clicked Accept. Worth saying out loud before anyone optimises bids on it.</li>
+</ol>
+
+<h2>The 90-second check for any site</h2>
+<p>DevTools → Network → filter <code>doubleclick</code> → hard refresh <em>without</em> touching the cookie banner. If the list is empty, Google isn't hearing from you either. Then click Accept and watch it fill up.</p>
+
+<h2>What I changed in the tool</h2>
+<p>Two things. The tracking audit now reads Google's own verdict on each campaign — primary status and reasons — instead of only inspecting configuration; and the site scanner records what the tags actually <em>send</em>, with consent denied and with consent granted, rather than whether they're present. Both came from being wrong about my own account, which is the only way I've ever learned anything useful about tracking.</p>
+<div class="cta">
+  <p><strong>See what your own account is doing.</strong> Connect Google Ads read-only and get your score and the three biggest issues in about a minute — no sign-up, no card, and the Google token is revoked the moment it finishes.</p>
+  <a class="btn" href="https://app.campaignowl.com/free-audit">Run the free instant audit →</a>
+</div>
+<p class="note">Tested 10 August 2026 on campaignowl.co.uk with a headless Chromium session and Consent Mode v2 defaults set to denied. Your results will depend on your tag setup and consent tool.</p>
+
+</div>
+<footer>
+  <div class="container">
+    <div class="links"><a href="/blog/">Blog</a><a href="/compare/">Compare</a><a href="/checklist.html">Free audit checklist</a><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="https://app.campaignowl.com">Sign in</a></div>
+    <p>© 2026 Campaign Owl. All rights reserved.</p>
+    <p style="margin-top:6px;font-size:11px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.5">Campaign Owl is a trading name of <strong>Online PPC By Maria Ltd</strong>, registered in England &amp; Wales, Company No. 08483336. VAT No. GB 211 7052 56. ICO Registration No. ZC143714.</p>
+  </div>
+</footer>
+<script src="/cookie-consent.js"></script>
+<script>cookieConsent.init({ tags: [{ name: 'Google tag (GA4)', load: function () {} }] });</script>
+<script src="/attribution.js"></script>
+</body>
+</html>
