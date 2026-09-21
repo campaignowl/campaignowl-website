@@ -79,11 +79,54 @@
     } catch (e) {}
   }
 
+  // Pricing signals (2026-09-21): one 'pricing_view' per session when the
+  // pricing section scrolls into view, and a 'plan_click' per plan button.
+  // Same endpoint, same first-touch, so /admin can line them up with the
+  // funnel. Nothing here blocks the click — the link still navigates.
+  function send(ft, kind, content) {
+    var payload = JSON.stringify({ k: kind, b: content, s: ft.s, m: ft.m, c: ft.c || null, p: location.pathname, r: document.referrer || null });
+    var url = 'https://app.campaignowl.com/api/visit';
+    try {
+      if (navigator.sendBeacon) navigator.sendBeacon(url, new Blob([payload], { type: 'text/plain' }));
+      else fetch(url, { method: 'POST', body: payload, headers: { 'Content-Type': 'text/plain' }, keepalive: true }).catch(function () {});
+    } catch (e) {}
+  }
+  function pricing(ft) {
+    var section = document.getElementById('pricing');
+    if (!section) return;
+    var KEY_PV = 'co_pricing_seen';
+    try {
+      if (!sessionStorage.getItem(KEY_PV) && 'IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          for (var j = 0; j < entries.length; j++) {
+            if (entries[j].isIntersecting) {
+              io.disconnect();
+              try { sessionStorage.setItem(KEY_PV, '1'); } catch (e) {}
+              send(ft, 'pricing_view', 'site');
+              break;
+            }
+          }
+        }, { threshold: 0.3 });
+        io.observe(section);
+      }
+    } catch (e) {}
+    var links = section.querySelectorAll('a[href*="' + APP_HOST + '"]');
+    for (var i = 0; i < links.length; i++) {
+      links[i].addEventListener('click', function (ev) {
+        var el = ev.currentTarget;
+        var card = el.closest ? el.closest('.pricing-grid > *') : null;
+        var h = card ? card.querySelector('h3') : null;
+        var plan = ((h && h.textContent) || el.textContent || 'plan').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40);
+        send(ft, 'plan_click', 'site:' + plan);
+      });
+    }
+  }
   var ft = load();
   beacon(ft);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { decorate(ft); });
+    document.addEventListener('DOMContentLoaded', function () { decorate(ft); pricing(ft); });
   } else {
     decorate(ft);
+    pricing(ft);
   }
 })();
