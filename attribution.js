@@ -121,12 +121,58 @@
       });
     }
   }
+  // Home-page engagement (2026-09-23): which sections a visitor actually
+  // reaches, and which links into the app they click. One 'section_view'
+  // per section per session; every click. Names come from the section's
+  // id, else its section-label text, else its class — no markup changes.
+  function slug(t) { return (t || '').trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40); }
+  function sectionName(el, i) {
+    if (el.id) return el.id;
+    var label = el.querySelector('.section-label');
+    if (label && slug(label.textContent)) return slug(label.textContent);
+    if (el.className && slug(el.className)) return slug(el.className.split(' ')[0]);
+    return 'section-' + i;
+  }
+  function engagement(ft) {
+    var sections = document.querySelectorAll('section');
+    if (!sections.length || !('IntersectionObserver' in window)) return;
+    var seen = {};
+    try { seen = JSON.parse(sessionStorage.getItem('co_sections_seen') || '{}'); } catch (e) {}
+    var io = new IntersectionObserver(function (entries) {
+      for (var j = 0; j < entries.length; j++) {
+        if (!entries[j].isIntersecting) continue;
+        var el = entries[j].target;
+        var name = el.getAttribute('data-co-section');
+        io.unobserve(el);
+        if (seen[name]) continue;
+        seen[name] = 1;
+        try { sessionStorage.setItem('co_sections_seen', JSON.stringify(seen)); } catch (e) {}
+        send(ft, 'section_view', name);
+      }
+    }, { threshold: 0.4 });
+    for (var i = 0; i < sections.length; i++) {
+      sections[i].setAttribute('data-co-section', sectionName(sections[i], i));
+      io.observe(sections[i]);
+    }
+    var links = document.querySelectorAll('a[href*="' + APP_HOST + '"]');
+    for (var k = 0; k < links.length; k++) {
+      var inPricing = links[k].closest && links[k].closest('#pricing');
+      if (inPricing) continue; // plan buttons already send plan_click
+      links[k].addEventListener('click', function (ev) {
+        var el = ev.currentTarget;
+        var sec = el.closest ? el.closest('section') : null;
+        var where = sec ? (sec.getAttribute('data-co-section') || 'page') : (el.closest && el.closest('nav') ? 'nav' : 'page');
+        send(ft, 'cta_click', where + ':' + (slug(el.textContent) || 'link'));
+      });
+    }
+  }
   var ft = load();
   beacon(ft);
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () { decorate(ft); pricing(ft); });
+    document.addEventListener('DOMContentLoaded', function () { decorate(ft); pricing(ft); engagement(ft); });
   } else {
     decorate(ft);
     pricing(ft);
+    engagement(ft);
   }
 })();
