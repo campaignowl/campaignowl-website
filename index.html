@@ -421,7 +421,7 @@ footer a:hover{color:var(--amber)}
         <span class="video-play" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span>
       </button>
     </div>
-    <p style="text-align:center;font-size:12.5px;color:var(--dim);margin-top:12px">Plays on YouTube&rsquo;s privacy-enhanced player. Subtitles included.</p>
+    <p style="text-align:center;font-size:12.5px;color:var(--dim);margin-top:12px">Plays on YouTube&rsquo;s privacy-enhanced player.</p>
   </div>
 </section>
 <script>
@@ -431,7 +431,7 @@ footer a:hover{color:var(--amber)}
   btn.addEventListener('click',function(){
     var id=wrap.getAttribute('data-video-id');
     var f=document.createElement('iframe');
-    f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1&cc_load_policy=1';
+    f.src='https://www.youtube-nocookie.com/embed/'+id+'?autoplay=1&rel=0&modestbranding=1';
     f.title='Campaign Owl 90-second tour';
     f.allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
     f.setAttribute('allowfullscreen','');
